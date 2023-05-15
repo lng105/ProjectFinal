@@ -2,6 +2,7 @@ import React from "react";
 import {
   BrowserRouter as Router, Route, Switch, Redirect
 } from "react-router-dom";
+import "./App.css"
 import MainNav from "./Shared/Nav/MainNav";
 import Accueil from "./Page statique/Accueil/Accueil";
 import Employeurs from "./Page statique/Employeurs/Employeurs"
@@ -11,7 +12,8 @@ import Footer from "./Shared/Nav/Footer";
 
 function App() {
   return (
-    <div>
+    <div className="page-container">
+      <div className="content-wrap">
     <Router>
       <MainNav/>
       <main>
@@ -32,7 +34,9 @@ function App() {
         </Switch>
       </main>
     </Router>
+    </div>
     <Footer/>
+    
     </div>
   );
 }
