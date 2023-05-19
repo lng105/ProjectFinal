@@ -6,30 +6,29 @@ const HttpErreur = require("../models/http-erreur");
 
 const Stage = require("../models/stage")
 
-const getStageById = async (requete, response, next) =>{
-    const stageID = requete.params.stageID;
-    let stage;
+const getStage = async (requete, reponse, next) =>{
+  let stages;
 
-    try{
-        stage = await Stage.findById(stageID);
-    }catch(err){
-        return next(
-            new HttpErreur("Erreur lors de la récupération du stage",500)
-        );
-    }
-    if (!stage) {
-        return next(new HttpErreur("Aucun stage trouvée pour l'id fourni", 404));
-      }
-      reponse.json({ stage: stage.toObject({ getters: true }) });
+  try{
+    stages = await Stage.find({}, { remuneration: 0, numTelephone: 0 });
+  }catch(err){
+      return next(new HttpErreur("Erreur accès Stage",500));
+  }
+
+  reponse.json({
+    stages: stages.map((stage) => stage.toObject({ getters: true })),
+  });
 }
 
+
 const creerStage = async (requete, reponse, next) =>{
-    const {nomPersonnageStage, courrielPersonneStage, nomEntreprise, addresseEntreprise, 
+    const {nomPersonneStage, courrielPersonneStage, nomEntreprise, numTelephone, addresseEntreprise, 
         typeStage, posteDisponible, descriptionStage, remuneration} = requete.body;
     const nouvelleStage = new Stage({
-        nomPersonnageStage, 
+        nomPersonneStage, 
         courrielPersonneStage, 
-        nomEntreprise, 
+        nomEntreprise,
+        numTelephone,
         addresseEntreprise, 
         typeStage, 
         posteDisponible, 
@@ -38,16 +37,18 @@ const creerStage = async (requete, reponse, next) =>{
     })
 
     try {
+        console.log("lol")
         await nouvelleStage.save();
+        console.log("test")
       } catch (err) {
         const erreur = new HttpErreur("Création de stage échouée", 500);
         return next(erreur);
       }
-      reponse.status(201).json({ stage: nouvelleStage });
+      reponse.status(201).json({ stage: nouvelleStage.toObject({getter:true})});
 }
 
 const updateStage = async (requete, reponse, next) => {
-    const { nomPersonnageStage, courrielPersonneStage, nomEntreprise, addresseEntreprise, 
+    const { nomPersonneStage, courrielPersonneStage, nomEntreprise, addresseEntreprise, 
         typeStage, posteDisponible, descriptionStage, remuneration } = requete.body;
     const stageID = requete.params.stageID;
   
@@ -55,7 +56,7 @@ const updateStage = async (requete, reponse, next) => {
   
     try {
       stage = await Stage.findById(stageID);
-      stage.nomPersonnageStage = nomPersonnageStage;
+      stage.nomPersonneStage = nomPersonneStage;
       stage.courrielPersonneStage = courrielPersonneStage;
       stage.nomEntreprise = nomEntreprise;
       stage.addresseEntreprise = addresseEntreprise;
@@ -89,10 +90,7 @@ const updateStage = async (requete, reponse, next) => {
     reponse.status(200).json({ message: "Stage supprimé" });
   };
 
-
-
-
-exports.getStageById = getStageById;
+exports.getStage = getStage;
 exports.creerStage = creerStage;
 exports.updateStage = updateStage;
 exports.supprimerStage = supprimerStage;

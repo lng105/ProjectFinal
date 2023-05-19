@@ -3,12 +3,17 @@ import {
   BrowserRouter as Router, Route, Switch, Redirect
 } from "react-router-dom";
 import "./App.css"
-import MainNav from "./Shared/Nav/MainNav";
+import MainNav from "./Shared/Components/Navigation/MainNav";
 import Accueil from "./Page statique/Accueil/Accueil";
 import Employeurs from "./Page statique/Employeurs/Employeurs"
-import Etudiants from "./Page statique/Etudiants/Etudiants"
+import EtudiantStat from "./Page statique/Etudiants/Etudiants"
 import FAQ from "./Page statique/FAQ/FAQ"
-import Footer from "./Shared/Nav/Footer";
+import Footer from "./Shared/Components/Footer/Footer";
+import NewEtudiant from "./etudiants/pages/NewEtudiant";
+import Etudiants from "./etudiants/pages/listerEtudiant";
+import NewStage from "./stages/pages/NewStage";
+import Stages from "./stages/pages/listerStage";
+import Contact from "./Shared/Components/Contact/Contact";
 
 function App() {
   return (
@@ -21,11 +26,26 @@ function App() {
           <Route path="/" exact>
             <Accueil/>
           </Route>
+          <Route path="/Stage/liste" exact>
+            <Stages/>
+          </Route>
+          <Route path="/Contact" exact>
+            <Contact/>
+          </Route>
+          <Route path="/Stage/new" exact>
+            <NewStage/>
+          </Route>
+          <Route path="/Etudiant/liste" exact>
+            <Etudiants/>
+          </Route>
+          <Route path="/Etudiant/new" exact>
+            <NewEtudiant/>
+          </Route>
           <Route path="/Employeurs">
             <Employeurs/>
           </Route>
           <Route path="/Etudiants">
-            <Etudiants/>
+            <EtudiantStat/>
           </Route>
           <Route path="/FAQ">
             <FAQ/>
@@ -36,7 +56,6 @@ function App() {
     </Router>
     </div>
     <Footer/>
-    
     </div>
   );
 }

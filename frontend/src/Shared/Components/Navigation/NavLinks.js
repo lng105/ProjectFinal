@@ -6,6 +6,18 @@ function NavLinks(props){
     return (
         <ul className='nav-links'>
             <li>
+                <NavLink to="/Stage/Liste">Liste Stage</NavLink>
+            </li>
+            <li>
+                <NavLink to="/Stage/new">Ajouter Stage</NavLink>
+            </li>
+            <li>
+                <NavLink to="/Etudiant/Liste">Liste Etudiant</NavLink>
+            </li>
+            <li>
+                <NavLink to="/Etudiant/new">Ajouter Etudiant</NavLink>
+            </li>
+            <li>
                 <NavLink to="/ProfilesEtCompetences">Profils et competences des stagiaires</NavLink>
             </li>
             <li>

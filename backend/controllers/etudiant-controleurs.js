@@ -6,21 +6,20 @@ const HttpErreur = require("../models/http-erreur");
 
 const Etudiant = require("../models/etudiant")
 
-const getEtudiantById = async (requete, response, next) =>{
-    const etudiantID = requete.params.etudiantID;
-    let etudiant;
+const getEtudiants = async (requete, reponse, next) =>{
+    let etudiants;
 
     try{
-        etudiant = await Etudiant.findById(etudiantID);
+        etudiants = await Etudiant.find({});
     }catch(err){
-        return next(
-            new HttpErreur("Erreur lors de la récupération du etudiant",500)
-        );
+        return next(new HttpErreur("Erreur accès etudiant",500));
     }
-    if (!etudiant) {
-        return next(new HttpErreur("Aucun etudiant trouvée pour l'id fourni", 404));
-      }
-      reponse.json({ etudiant: etudiant.toObject({ getters: true }) });
+
+    reponse.json({
+      etudiants: etudiants.map((etudiant) =>
+      etudiant.toObject({ getters: true })
+      ),
+    });
 }
 
 const creerEtudiant = async (requete, reponse, next) =>{
@@ -29,16 +28,17 @@ const creerEtudiant = async (requete, reponse, next) =>{
         etudiantDA, 
         etudiantNom, 
         etudiantCourriel, 
-        etudiantProfil
+        etudiantProfil,
     })
 
     try {
-        await nouveauEtudiant.save();
-      } catch (err) {
-        const erreur = new HttpErreur("Création de etudiant échouée", 500);
-        return next(erreur);
-      }
-      reponse.status(201).json({ etudiant: nouveauEtudiant });
+      await nouveauEtudiant.save();
+    } catch (err) {
+      const erreur = new HttpErreur("Création de etudiant échouée", 500);
+      return next(erreur);
+    }
+    
+      reponse.status(201).json({ etudiant: nouveauEtudiant.toObject({getter:true}) });
 }
 
 const updateEtudiant = async (requete, reponse, next) => {
@@ -52,7 +52,7 @@ const updateEtudiant = async (requete, reponse, next) => {
         etudiant.etudiantNom = etudiantNom;
         etudiant.etudiantCourriel = etudiantCourriel;
         etudiant.etudiantProfil = etudiantProfil;
-      await stage.save();
+      await etudiant.save();
     } catch {
       return next(
         new HttpErreur("Erreur lors de la mise à jour de la stage", 500)
@@ -66,7 +66,7 @@ const updateEtudiant = async (requete, reponse, next) => {
     const etudiantID = requete.params.etudiantID;
     let etudiant;
     try {
-        etudiant = await Etudiant.findByIdAndRemove(etudiantID)
+      etudiant = await Etudiant.findByIdAndDelete(etudiantID);
     } catch {
       return next(
         new HttpErreur("Erreur lors de la suppression du etudiant", 500)
@@ -78,7 +78,7 @@ const updateEtudiant = async (requete, reponse, next) => {
     reponse.status(200).json({ message: "Etudiant supprimé" });
   };
 
-exports.getEtudiantById = getEtudiantById
+exports.getEtudiants = getEtudiants
 exports.creerEtudiant = creerEtudiant
 exports.updateEtudiant = updateEtudiant
 exports.supprimerEtudiant = supprimerEtudiant
