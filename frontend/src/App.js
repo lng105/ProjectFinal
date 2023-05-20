@@ -59,6 +59,9 @@ const App = () => {
         <Route path="/Etudiant/new" exact>
             <NewEtudiant />
         </Route>
+        <Route path="/Contact" exact>
+          <Contact />
+        </Route>
         <Redirect to="/" />
       </Switch>
     );

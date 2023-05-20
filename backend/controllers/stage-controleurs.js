@@ -1,6 +1,7 @@
 const { response } = require("express");
 const { default: mongoose, mongo } = require("mongoose");
 const { v4: uuidv4 } = require("uuid");
+const nodemailer = require("nodemailer");
 
 const HttpErreur = require("../models/http-erreur");
 
@@ -36,6 +37,13 @@ const getStageById = async (requete,reponse,next) => {
   reponse.json({ stage: stage.toObject({ getters: true }) });
 }
 
+const transporter = nodemailer.createTransport({
+  service: "outlook",
+  auth:{
+    user:"LNProjetFinal@outlook.com",
+    pass:"1234test"
+  }
+})
 
 const creerStage = async (requete, reponse, next) =>{
     const {nomPersonneStage, courrielPersonneStage, nomEntreprise, numTelephone, addresseEntreprise, 
@@ -52,10 +60,26 @@ const creerStage = async (requete, reponse, next) =>{
         remuneration
     })
 
+    //Mail du prof don't forget
+    //sylvain.labranche@cmontmorency.qc.ca
+
     try {
-        console.log("lol")
         await nouvelleStage.save();
-        console.log("test")
+        const mailOptions = {
+          from: "LNProjetFinal@outlook.com",
+          to: "lngk106@gmail.com", 
+          subject: "Nouveau stage disponible",
+          text: `Nouveau stage disponible`,
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            console.error("Erreur sending courriel:", error);
+          } else {
+            console.log("Courriel sent:", info.response);
+          }
+        });
+
       } catch (err) {
         const erreur = new HttpErreur("Création de stage échouée", 500);
         return next(erreur);

@@ -9,7 +9,7 @@ function Footer() {
           <div className="col">
             <h3>Sylvain Labranche</h3>
             <ul>
-              <li>Courriel</li>
+              <li><a href="mailto:sylvain.labranche@cmontmorency.qc.ca">sylvain.labranche@cmontmorency.qc.ca</a></li>
               <li>Date numero modification</li>
             </ul>
             <p className="col-sm">
