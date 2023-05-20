@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import StageItem from "./StageItem";
 import Card from "../../Shared/Components/UIElements/Card";
 import "./StageList.css";
 
 const StageList = (props) => {
-    console.log(props.items);
-  if (props.items.length === 0) {
+  const [deletedStageId, setDeletedStageId] = useState(null);
+
+  const handleDeleteStage = (stageId) => {
+    setDeletedStageId(stageId);
+  };
+
+  const filteredItems = props.items.filter(
+    (stage) => stage.id !== deletedStageId
+  )
+
+  if (filteredItems.length === 0) {
     return (
       <div className="center">
         <Card>
@@ -17,23 +26,23 @@ const StageList = (props) => {
 
   return (
     <ul className="user-list">
-      {props.items.map(stage => (
+      {filteredItems.map((stage) => (
         <StageItem
           key={stage.id}
           id={stage.id}
+          nomEntreprise={stage.nomEntreprise}
           nomPersonneStage={stage.nomPersonneStage}
           courrielPersonneStage={stage.courrielPersonneStage}
-          nomEntreprise={stage.nomEntreprise}
-          numTelephone={stage.numTelephone}
           addresseEntreprise={stage.addresseEntreprise}
           typeStage={stage.typeStage}
-          posteDisponible={stage.posteDisponible}
           descriptionStage={stage.descriptionStage}
-          remuneration={stage.remuneration}
+          posteDisponible={stage.posteDisponible}
+          onDelete={handleDeleteStage}
         />
       ))}
     </ul>
   );
 };
 
-export default StageList
+export default StageList;
+

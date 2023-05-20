@@ -20,6 +20,22 @@ const getStage = async (requete, reponse, next) =>{
   });
 }
 
+const getStageById = async (requete,reponse,next) => {
+  const stageId =requete.params.stageId;
+  let stage;
+  try{
+    stage = await Stage.findById(stageId);
+  }catch(err){
+    return next(
+      new HttpErreur("Erreur lors de la récupération du stage", 500)
+    );
+  }
+  if (!stage) {
+    return next(new HttpErreur("Aucune stage trouvée pour l'id fourni", 404));
+  }
+  reponse.json({ stage: stage.toObject({ getters: true }) });
+}
+
 
 const creerStage = async (requete, reponse, next) =>{
     const {nomPersonneStage, courrielPersonneStage, nomEntreprise, numTelephone, addresseEntreprise, 
@@ -50,12 +66,12 @@ const creerStage = async (requete, reponse, next) =>{
 const updateStage = async (requete, reponse, next) => {
     const { nomPersonneStage, courrielPersonneStage, nomEntreprise, addresseEntreprise, 
         typeStage, posteDisponible, descriptionStage, remuneration } = requete.body;
-    const stageID = requete.params.stageID;
+    const stageId = requete.params.stageId;
   
     let stage;
   
     try {
-      stage = await Stage.findById(stageID);
+      stage = await Stage.findById(stageId);
       stage.nomPersonneStage = nomPersonneStage;
       stage.courrielPersonneStage = courrielPersonneStage;
       stage.nomEntreprise = nomEntreprise;
@@ -75,10 +91,10 @@ const updateStage = async (requete, reponse, next) => {
   };
 
   const supprimerStage = async (requete, reponse, next) => {
-    const stageID = requete.params.stageID;
+    const stageId = requete.params.stageId;
     let stage;
     try {
-        stage = await Stage.findByIdAndRemove(stageID)
+        stage = await Stage.findByIdAndRemove(stageId)
     } catch {
       return next(
         new HttpErreur("Erreur lors de la suppression du stage", 500)
@@ -91,6 +107,7 @@ const updateStage = async (requete, reponse, next) => {
   };
 
 exports.getStage = getStage;
+exports.getStageById = getStageById;
 exports.creerStage = creerStage;
 exports.updateStage = updateStage;
 exports.supprimerStage = supprimerStage;

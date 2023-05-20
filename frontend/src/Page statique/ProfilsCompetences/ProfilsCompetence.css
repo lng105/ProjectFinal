@@ -1,0 +1,36 @@
+.container-profiles {
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .container-profiles h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .container-profiles ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+  
+  .container-profiles li {
+    margin-bottom: 5px;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .col {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .col:last-child {
+    margin-right: 0;
+  }
+  

@@ -4,8 +4,9 @@ const controleursStage = require("../controllers/stage-controleurs")
 const router = express.Router()
 
 router.get("/",controleursStage.getStage);
+router.get("/:stageId",controleursStage.getStageById);
 router.post("/",controleursStage.creerStage);
-router.patch("/:stageID",controleursStage.updateStage);
-router.delete("/:stageID",controleursStage.supprimerStage)
+router.patch("/:stageId",controleursStage.updateStage);
+router.delete("/:stageId",controleursStage.supprimerStage)
 
 module.exports = router;

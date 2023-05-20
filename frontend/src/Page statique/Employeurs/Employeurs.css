@@ -1,0 +1,30 @@
+.container-employeurs {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.h1-employeurs {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.h3-employeurs {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.p-employeurs {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.a-employeurs {
+  color: blue;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: navy;
+}
+

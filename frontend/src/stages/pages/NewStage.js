@@ -10,6 +10,7 @@ import {
   VALIDATOR_EMAIL,
   VALIDATOR_TELEPHONE,
 } from "../../Shared/util/validators";
+import  "./StageForm.css"
 
 const NewStage = () => {
   const { error, sendRequest, clearError } = useHttpClient();
@@ -89,7 +90,7 @@ const NewStage = () => {
 
   return (
     <React.Fragment>
-      <form onSubmit={placeSubmitHandler}>
+      <form className="place-form" onSubmit={placeSubmitHandler}>
         <Input
           id="nomPersonneStage"
           element="input"

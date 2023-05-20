@@ -14,6 +14,8 @@ import Etudiants from "./etudiants/pages/listerEtudiant";
 import NewStage from "./stages/pages/NewStage";
 import Stages from "./stages/pages/listerStage";
 import Contact from "./Shared/Components/Contact/Contact";
+import UpdateStage from "./stages/pages/UpdateStage";
+import ProfilesEtCompetences from "./Page statique/ProfilsCompetences/ProfilsCompetences";
 
 function App() {
   return (
@@ -35,19 +37,25 @@ function App() {
           <Route path="/Stage/new" exact>
             <NewStage/>
           </Route>
+          <Route path="/stages/:stageId" exact>
+            <UpdateStage/>
+          </Route>
           <Route path="/Etudiant/liste" exact>
             <Etudiants/>
           </Route>
           <Route path="/Etudiant/new" exact>
             <NewEtudiant/>
           </Route>
-          <Route path="/Employeurs">
+          <Route path="/ProfilesEtCompetences" exact>
+            <ProfilesEtCompetences/>
+          </Route>
+          <Route path="/Employeurs" exact>
             <Employeurs/>
           </Route>
-          <Route path="/Etudiants">
+          <Route path="/Etudiants" exact>
             <EtudiantStat/>
           </Route>
-          <Route path="/FAQ">
+          <Route path="/FAQ" exact>
             <FAQ/>
           </Route>
           <Redirect to="/" />
