@@ -9,7 +9,7 @@ const Stages =() => {
     useEffect(() => {
         const recupererStages = async () => {
             try {
-                const responseData = await sendRequest("http://localhost:5000/api/stages");
+                const responseData = await sendRequest(process.env.REACT_APP_BACKEND_URL+ "/stages");
 
                 setStages(responseData.stages);
             }catch(err){

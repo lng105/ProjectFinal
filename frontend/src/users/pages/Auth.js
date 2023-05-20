@@ -70,7 +70,7 @@ const Auth = () => {
     if (isLoginMode) {
       try {
         const reponseData = await sendRequest(
-          "http://localhost:5000/api/users/connexion",
+          process.env.REACT_APP_BACKEND_URL+"/users/connexion",
           "POST",
           JSON.stringify({
             typeCompte: formState.inputs.typeCompte.value,
@@ -84,7 +84,7 @@ const Auth = () => {
         console.log(reponseData);
         auth.login(reponseData.user.id);
         alertMessage = "Connexion réussie!";
-        history.push("http://localhost:3000/")
+        history.push("process.env.REACT_APP_BACKEND_URL")
       } catch (err) {
         console.log(err);
         alertMessage = "Erreur lors de la connexion.";
@@ -92,7 +92,7 @@ const Auth = () => {
     } else {
       try {
         const reponseData = await sendRequest(
-          "http://localhost:5000/api/users/inscription",
+          process.env.REACT_APP_BACKEND_URL+"/users/inscription",
           "POST",
           JSON.stringify({
             typeCompte: formState.inputs.typeCompte.value,
@@ -107,7 +107,7 @@ const Auth = () => {
         console.log(reponseData);
         auth.login(reponseData.user.id);
         alertMessage = "Inscription réussie!";
-        history.push("http://localhost:3000/")
+        history.push("process.env.REACT_APP_BACKEND_URL")
       } catch (err) {
         console.log(err);
         alertMessage = "Erreur lors de la inscription.";

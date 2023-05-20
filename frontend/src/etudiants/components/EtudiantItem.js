@@ -15,7 +15,7 @@ const EtudiantItem = (props) => {
 
   const fetchStages = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/stages");
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL+ "/stages");
       const data = await response.json();
       setStages(data.stages);
     } catch (error) {

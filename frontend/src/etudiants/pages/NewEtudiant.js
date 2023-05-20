@@ -42,7 +42,7 @@ const NewEtudiant = () => {
 
     try {
       const responseData = await sendRequest(
-        "http://localhost:5000/api/etudiants/",
+        process.env.REACT_APP_BACKEND_UR+ "/etudiants/",
           "POST",
           JSON.stringify({
             etudiantDA: formState.inputs.etudiantDA.value,

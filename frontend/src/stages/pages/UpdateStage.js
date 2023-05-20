@@ -65,7 +65,7 @@ const UpdateStage = () => {
     const fetchStage = async () => {
       try {
         const responseData = await sendRequest(
-            `http://localhost:5000/api/stages/${stageId}`
+          process.env.REACT_APP_BACKEND_URL+`/${stageId}`
         );
         setLoadedStage(responseData.stage);
         console.log(responseData.stage);
