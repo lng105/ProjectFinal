@@ -24,6 +24,7 @@ const EtudiantList = (props) => {
           etudiantDA={etudiant.etudiantDA}
           etudiantCourriel={etudiant.etudiantCourriel}
           etudiantProfil={etudiant.etudiantProfil}
+          stages={etudiant.stages}
         />
       ))}
     </ul>

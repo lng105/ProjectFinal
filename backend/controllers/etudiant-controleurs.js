@@ -29,6 +29,7 @@ const creerEtudiant = async (requete, reponse, next) =>{
         etudiantNom, 
         etudiantCourriel, 
         etudiantProfil,
+        stages
     })
 
     try {

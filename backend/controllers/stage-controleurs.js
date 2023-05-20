@@ -6,6 +6,7 @@ const nodemailer = require("nodemailer");
 const HttpErreur = require("../models/http-erreur");
 
 const Stage = require("../models/stage")
+const Etudiant = require("../models/etudiant")
 
 const getStage = async (requete, reponse, next) =>{
   let stages;
@@ -47,7 +48,7 @@ const transporter = nodemailer.createTransport({
 
 const creerStage = async (requete, reponse, next) =>{
     const {nomPersonneStage, courrielPersonneStage, nomEntreprise, numTelephone, addresseEntreprise, 
-        typeStage, posteDisponible, descriptionStage, remuneration} = requete.body;
+        typeStage, posteDisponible, descriptionStage, remuneration,etudiant} = requete.body;
     const nouvelleStage = new Stage({
         nomPersonneStage, 
         courrielPersonneStage, 
@@ -57,7 +58,8 @@ const creerStage = async (requete, reponse, next) =>{
         typeStage, 
         posteDisponible, 
         descriptionStage, 
-        remuneration
+        remuneration,
+        etudiant
     })
 
     //Mail du prof don't forget

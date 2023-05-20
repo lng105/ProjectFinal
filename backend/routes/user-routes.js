@@ -6,5 +6,4 @@ const router = express.Router()
 router.post('/inscription', controleursUser.inscription);
 router.post('/connexion', controleursUser.connexion);
 
-
 module.exports = router;

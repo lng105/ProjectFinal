@@ -17,7 +17,6 @@ const Auth = () => {
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const { sendRequest } = useHttpClient();
-
   const [formState, inputHandler, setFormData] = useForm(
     {
       typeCompte: {

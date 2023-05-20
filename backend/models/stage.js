@@ -10,7 +10,8 @@ const stageSchema = new Schema({
         typeStage:{type:String, enum:['Reseaux et securite', 'Developpement application'], unique: false},
         posteDisponible:{type:Number, required: true,unique: false},
         descriptionStage:{type:String, required: true,unique: false},
-        remuneration:{type:Number, required: true, unique: false}
+        remuneration:{type:Number, required: true, unique: false},
+        etudiant: {type: mongoose.Types.ObjectId,require:true, ref: "Etudiant"}
 })
 
 module.exports = mongoose.model("Stage", stageSchema);

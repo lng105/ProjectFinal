@@ -50,7 +50,7 @@ const App = () => {
         <Route path="/Stage/new" exact>
             <NewStage />
         </Route>
-        <Route path="/Stage/:stageId" exact>
+        <Route path="/Stages/:stageId" exact>
             <UpdateStage />
         </Route>
         <Route path="/Etudiant/liste" exact>
@@ -61,6 +61,18 @@ const App = () => {
         </Route>
         <Route path="/Contact" exact>
           <Contact />
+        </Route>
+        <Route path="/ProfilesEtCompetences" exact>
+          <ProfilesEtCompetences />
+        </Route>
+        <Route path="/Employeurs" exact>
+          <Employeurs />
+        </Route>
+        <Route path="/Etudiants" exact>
+          <EtudiantStage />
+        </Route>
+        <Route path="/FAQ" exact>
+          <FAQ />
         </Route>
         <Redirect to="/" />
       </Switch>
