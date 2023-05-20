@@ -36,7 +36,7 @@ app.use((error, requete, reponse, next) => {
 });
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/Web&DB")
+  .connect("mongodb+srv://lng105:SIHjtFWT3HrJMz80@lng.biobdjp.mongodb.net/?retryWrites=true&w=majority")
   .then(() => {
     app.listen(5000);
     console.log("Connexion à la base de données réussie");
