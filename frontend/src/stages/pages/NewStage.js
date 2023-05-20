@@ -138,7 +138,7 @@ const NewStage = () => {
         />
         <Input
           id="typeStage"
-          element="select"
+          element="select1"
           type="text"
           label="Type de stage"
           validators={[VALIDATOR_REQUIRE()]}
