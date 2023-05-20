@@ -119,7 +119,7 @@ const UpdateStage = () => {
     event.preventDefault();
     try {
       await sendRequest(
-        `http://localhost:5000/api/stages/${stageId}`,
+        process.env.REACT_APP_BACKEND_URL+ `/stages/${stageId}`,
         "PATCH",
         JSON.stringify({
           nomPersonneStage: formState.inputs.nomPersonneStage.value,

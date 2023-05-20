@@ -84,7 +84,7 @@ const Auth = () => {
         console.log(reponseData);
         auth.login(reponseData.user.id);
         alertMessage = "Connexion réussie!";
-        history.push("process.env.REACT_APP_BACKEND_URL")
+        history.push(process.env.REACT_APP_BACKEND_URL)
       } catch (err) {
         console.log(err);
         alertMessage = "Erreur lors de la connexion.";
@@ -107,7 +107,7 @@ const Auth = () => {
         console.log(reponseData);
         auth.login(reponseData.user.id);
         alertMessage = "Inscription réussie!";
-        history.push("process.env.REACT_APP_BACKEND_URL")
+        history.push(process.env.REACT_APP_BACKEND_URL)
       } catch (err) {
         console.log(err);
         alertMessage = "Erreur lors de la inscription.";
