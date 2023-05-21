@@ -1,0 +1,41 @@
+
+.container-etudiants {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  h1.etudiants {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  h3.etudiants {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  p.etudiants {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  p.etudiants:nth-child(4),
+  p.etudiants:nth-child(7),
+  p.etudiants:nth-child(10) {
+    font-weight: bold;
+    margin-top: 1.5rem;
+  }
+  
+  p.etudiants:nth-child(5),
+  p.etudiants:nth-child(8),
+  p.etudiants:nth-child(11) {
+    margin-left: 1rem;
+  }
+  
+  p.etudiants:nth-child(6),
+  p.etudiants:nth-child(9),
+  p.etudiants:nth-child(12) {
+    margin-left: 2rem;
+  }
+  

@@ -1,0 +1,65 @@
+.stage-overlay {
+    width: 40rem;
+    max-width: 90%;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    padding: 1rem;
+    position: fixed;
+    top: 30vh;
+    left: calc(50% - 20rem);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .stage-overlay h2 {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  
+  .stage-overlay__content {
+    width: 100%;
+    overflow-y: auto;
+    max-height: 20rem;
+    margin-bottom: 1rem;
+  }
+  
+  .stage-item {
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    transition: background-color 0.3s ease-out;
+  }
+  
+  .stage-item:hover,
+  .stage-item.selected {
+    background-color: #f5f5f5;
+    border-color: #ccc;
+  }
+  
+  .stage-item h3 {
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  .stage-item p {
+    font-size: 0.8rem;
+    margin: 0;
+    color: #777;
+  }
+  
+  .stage-overlay__actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .stage-overlay__actions button {
+    margin-left: 0.5rem;
+  }
+  
